@@ -1,0 +1,32 @@
+name: fimss
+description: "Sistema de filas virtuales IMSS QR FILAVIP."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.2.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Iconos básicos de iOS/Android
+  cupertino_icons: ^1.0.6
+  
+  # Para escanear códigos QR
+  mobile_scanner: ^5.1.1
+  
+  # Para guardar datos locales (como el turno)
+  shared_preferences: ^2.2.2
+  
+  # Para conectar con el backend (API)
+  http: ^1.2.0
+  supabase_flutter: ^2.17.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
