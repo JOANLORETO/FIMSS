@@ -299,3 +299,9 @@ La documentación debe mantenerse actualizada conforme evolucione el proyecto.
 Cada modificación debe realizarse intentando conservar las funcionalidades existentes.
 
 Cuando exista duda entre una modificación grande y una modificación pequeña, se debe preferir inicialmente la modificación pequeña, comprobable y reversible.
+
+## Automatización GitHub
+
+FIMSS cuenta con sincronización automática mediante `scripts/auto_sync.sh`.
+
+Prueba de sincronización automática.
