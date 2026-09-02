@@ -305,3 +305,5 @@ Cuando exista duda entre una modificación grande y una modificación pequeña, 
 FIMSS cuenta con sincronización automática mediante `scripts/auto_sync.sh`.
 
 Prueba de sincronización automática.
+
+Prueba final del automatizador FIMSS.
