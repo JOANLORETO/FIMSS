@@ -309,3 +309,46 @@ Prueba de sincronización automática.
 Prueba final del automatizador FIMSS.
 
 Prueba de seguridad del automatizador.
+
+## Sincronización automática con GitHub
+
+FIMSS utiliza GitHub como fuente principal del código.
+
+El repositorio local canónico es:
+`~/fimss`
+
+La sincronización automática se realiza mediante:
+`scripts/auto_sync.sh`
+
+El script es ejecutado automáticamente por macOS mediante el LaunchAgent:
+`com.fimss.autosync`
+
+Archivo del LaunchAgent:
+`~/Library/LaunchAgents/com.fimss.autosync.plist`
+
+Flujo automático:
+
+1. Detectar cambios dentro del proyecto.
+2. Esperar 10 segundos antes de procesarlos.
+3. Verificar que GitHub no tenga cambios que todavía no estén en el Mac.
+4. Ejecutar `flutter analyze`.
+5. Si existen errores de análisis, detener la sincronización.
+6. Preparar únicamente archivos ya registrados por Git.
+7. Crear un commit automático con fecha y hora.
+8. Enviar el commit a `origin/main`.
+
+Los archivos nuevos no se agregan automáticamente mediante `git add -A`.
+Deben agregarse manualmente cuando corresponda.
+
+El automatizador está diseñado para evitar subir cambios cuando existe divergencia entre el repositorio local y GitHub.
+
+Logs del LaunchAgent:
+
+`/tmp/fimss-autosync.log`
+`/tmp/fimss-autosync-error.log`
+
+Estado esperado del servicio:
+
+`state = running`
+
+Este mecanismo permite que otra IA pueda continuar el proyecto desde el repositorio GitHub sin depender de archivos ZIP enviados al chat.
