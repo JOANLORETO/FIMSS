@@ -13,21 +13,12 @@ echo " FIMSS - SINCRONIZACIÓN AUTOMÁTICA"
 echo "========================================"
 echo "Proyecto: $PROJECT_DIR"
 echo ""
-
-# Verificar repositorio Git
-if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
-    echo "ERROR: No se encontró un repositorio Git."
-    exit 1
-fi
-
 echo "Esperando cambios..."
 echo "Presiona Ctrl+C para detener."
 echo ""
 
 while true; do
 
-    # Esperar un cambio dentro del proyecto.
-    # Se excluyen archivos generados y carpetas internas.
     fswatch -1 \
         --exclude '\.git/' \
         --exclude 'build/' \
@@ -55,8 +46,7 @@ while true; do
     git status --short
     echo ""
 
-    # Seguridad: no continuar si GitHub tiene cambios
-    # que todavía no existen localmente.
+    # Verificar que GitHub no tenga cambios pendientes.
     git fetch origin main >/dev/null 2>&1
 
     LOCAL="$(git rev-parse main)"
@@ -95,17 +85,26 @@ while true; do
     echo "Flutter analyze: OK"
     echo ""
 
-    # Mostrar exactamente qué se va a agregar.
-    echo "Archivos que serán preparados:"
-    git status --short
+    # Solo preparar archivos que Git ya conoce.
+    echo "Archivos modificados que serán preparados:"
+    git diff --name-only
     echo ""
 
-    # Agregar los cambios.
-    git add -A
+    git add -u
 
-    # Verificar que realmente haya cambios preparados.
+    # Detectar archivos nuevos que estén fuera de las exclusiones.
+    NEW_FILES="$(git ls-files --others --exclude-standard)"
+
+    if [ -n "$NEW_FILES" ]; then
+        echo "Archivos nuevos detectados:"
+        echo "$NEW_FILES"
+        echo ""
+        echo "Los archivos nuevos NO serán agregados automáticamente."
+        echo "Agrégalos manualmente si forman parte del proyecto."
+    fi
+
     if git diff --cached --quiet; then
-        echo "No hay cambios para crear commit."
+        echo "No hay cambios preparados para crear commit."
         continue
     fi
 
