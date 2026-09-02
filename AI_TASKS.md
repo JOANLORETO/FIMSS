@@ -24,8 +24,8 @@ La prioridad es avanzar de forma incremental, conservando todo lo que ya funcion
 * [x] Proyecto almacenado en GitHub.
 * [x] `AI_CONTEXT.md` creado.
 * [x] `AI_RULES.md` creado.
-* [ ] Crear y mantener `CHANGELOG.md`.
-* [ ] Crear posteriormente `AGENTS.md`.
+* [x] Crear y mantener `CHANGELOG.md`.
+* [x] Crear posteriormente `AGENTS.md`.
 
 ## Repositorio
 
