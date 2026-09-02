@@ -393,3 +393,28 @@ Leyenda:
 * `[!]` Bloqueado o requiere investigación.
 
 Este archivo debe mantenerse actualizado durante el desarrollo.
+
+---
+
+# 19. INFRAESTRUCTURA DE DESARROLLO
+
+* [x] GitHub establecido como fuente principal del código.
+
+* [x] Documentación persistente para IA configurada.
+
+* [x] `AGENTS.md` configurado.
+
+* [x] `scripts/auto_sync.sh` implementado.
+
+* [x] Validación mediante `flutter analyze` antes de sincronizar.
+
+* [x] Protección contra divergencia entre el repositorio local y GitHub.
+
+* [x] Archivos nuevos protegidos contra incorporación automática.
+
+* [x] Commit y push automáticos configurados.
+
+* [x] LaunchAgent de macOS configurado.
+
+* [x] Sincronización automática verificada funcionando.
+
